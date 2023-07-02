@@ -26,7 +26,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoppingCart",
+                name: "ShoppingCarts",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -35,7 +35,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCart", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,7 +60,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoppingCartProduct",
+                name: "ShoppingCartProducts",
                 columns: table => new
                 {
                     IdProduct = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -70,17 +70,17 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCartProduct", x => new { x.IdProduct, x.IdShoppingCart });
+                    table.PrimaryKey("PK_ShoppingCartProducts", x => new { x.IdProduct, x.IdShoppingCart });
                     table.ForeignKey(
-                        name: "FK_ShoppingCartProduct_Products_IdProduct",
+                        name: "FK_ShoppingCartProducts_Products_IdProduct",
                         column: x => x.IdProduct,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShoppingCartProduct_ShoppingCart_IdShoppingCart",
+                        name: "FK_ShoppingCartProducts_ShoppingCarts_IdShoppingCart",
                         column: x => x.IdShoppingCart,
-                        principalTable: "ShoppingCart",
+                        principalTable: "ShoppingCarts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -90,8 +90,8 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 columns: new[] { "Id", "Description" },
                 values: new object[,]
                 {
-                    { new Guid("3c1f88b5-2bed-469d-91bc-9c06d4f092b4"), "2 por 1" },
-                    { new Guid("f4c5d299-0ffb-4858-89c9-9157809b5931"), "3 por R$10" }
+                    { new Guid("348303ec-f3dd-4180-94e6-4ba7701926d8"), "2 por 1" },
+                    { new Guid("904a6594-c0de-4fe7-a952-8fdbedb3a8ac"), "3 por R$10" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -100,8 +100,8 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 column: "IdPromotion");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCartProduct_IdShoppingCart",
-                table: "ShoppingCartProduct",
+                name: "IX_ShoppingCartProducts_IdShoppingCart",
+                table: "ShoppingCartProducts",
                 column: "IdShoppingCart");
         }
 
@@ -109,13 +109,13 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ShoppingCartProduct");
+                name: "ShoppingCartProducts");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "ShoppingCart");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "Promotions");

@@ -12,7 +12,7 @@ using WonderfulStore.Infrastructure;
 namespace WonderfulStore.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230702182002_InitialMigration")]
+    [Migration("20230702194628_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -69,12 +69,12 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3c1f88b5-2bed-469d-91bc-9c06d4f092b4"),
+                            Id = new Guid("348303ec-f3dd-4180-94e6-4ba7701926d8"),
                             Description = "2 por 1"
                         },
                         new
                         {
-                            Id = new Guid("f4c5d299-0ffb-4858-89c9-9157809b5931"),
+                            Id = new Guid("904a6594-c0de-4fe7-a952-8fdbedb3a8ac"),
                             Description = "3 por R$10"
                         });
                 });
@@ -93,7 +93,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingCart");
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCartProduct", b =>
@@ -114,7 +114,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("IdShoppingCart");
 
-                    b.ToTable("ShoppingCartProduct", (string)null);
+                    b.ToTable("ShoppingCartProducts", (string)null);
                 });
 
             modelBuilder.Entity("WonderfulStore.Core.Entities.Product", b =>

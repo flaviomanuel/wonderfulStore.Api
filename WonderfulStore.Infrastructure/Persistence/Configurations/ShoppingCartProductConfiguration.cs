@@ -8,7 +8,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<ShoppingCartProduct> builder)
         {
-           builder.ToTable("ShoppingCartProduct");
+           builder.ToTable("ShoppingCartProducts");
 
            builder.HasKey(x => new { x.IdProduct, x.IdShoppingCart});
 

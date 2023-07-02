@@ -28,7 +28,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
 
            await _context.SaveChangesAsync();
         }
-        public async Task<List<Product>> GetAllAsync() =>  await _context.Products.ToListAsync();
+        public async Task<List<Product>> GetAllAsync() => await _context.Products.Include(x => x.Promotion).ToListAsync();
 
         public async Task<Product?> GetByIdAsync(Guid id) => await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
 

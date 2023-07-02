@@ -4,15 +4,15 @@ using WonderfulStore.Core.Interfaces;
 
 namespace WonderfulStore.Application.Commands.GetByIdProduct
 {
-    public class GetByIdProductCommandHandler : IRequestHandler<GetByIdCommand, Product>
+    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, Product>
     {
         private readonly IProductRepository _productRepository;
 
-        public GetByIdProductCommandHandler(IProductRepository productRepository)
+        public GetByIdProductQueryHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
-        public async Task<Product> Handle(GetByIdCommand request, CancellationToken cancellationToken)
+        public async Task<Product> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.Id);
 

@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WonderfulStore.Application.Commands.AddProduct;
+using WonderfulStore.Application.Queries.GetAllProducts;
 
 namespace WonderfulStore.Api.Controllers
 {
@@ -19,6 +20,16 @@ namespace WonderfulStore.Api.Controllers
             var id = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(Add), new { id = id }, command);
-     }
+        }
+
+        
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll(){
+            var query  =  new GetAllProductsQuery();
+            
+            var products = await _mediator.Send(query);
+
+            return Ok(products);
+        }
     }
 }

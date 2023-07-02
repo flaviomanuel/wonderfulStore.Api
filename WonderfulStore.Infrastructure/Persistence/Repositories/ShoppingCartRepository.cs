@@ -21,6 +21,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
            return shoppingCart;
         }
 
+        public async Task<ShoppingCart?> GetById(Guid id) => await _context.ShoppingCarts.FirstOrDefaultAsync(x => x.Id == id);
         
     }
 }

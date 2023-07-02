@@ -1,9 +1,8 @@
 using MediatR;
-using WonderfulStore.Core.Entities;
 
 namespace WonderfulStore.Application.Commands.AddProduct
 {
-    public class AddProductCommand :  IRequest<Product>
+    public class AddProductCommand :  IRequest<Guid>
     {
         public string Name { get;  set; }
         public float Price { get;  set; }

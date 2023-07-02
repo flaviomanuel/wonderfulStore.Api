@@ -4,7 +4,7 @@ using WonderfulStore.Core.Interfaces;
 
 namespace WonderfulStore.Application.Commands.AddProduct
 {
-    public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Product>
+    public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Guid>
     {
         private readonly IProductRepository _productRepository;
 
@@ -13,13 +13,13 @@ namespace WonderfulStore.Application.Commands.AddProduct
             _productRepository = productRepository;
         }
 
-        public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
             var product = new Product(request.Name, request.Price, request.Description, request.IdPromotion);
 
             await _productRepository.AddAsync(product);
 
-            return product;
+            return product.Id;
         }
     }
 }

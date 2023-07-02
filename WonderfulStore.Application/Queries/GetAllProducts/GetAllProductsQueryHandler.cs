@@ -1,10 +1,10 @@
 using MediatR;
-using WonderfulStore.Core.Entities;
+using WonderfulStore.Application.ViewModels;
 using WonderfulStore.Core.Interfaces;
 
 namespace WonderfulStore.Application.Queries.GetAllProducts
 {
-    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<Product>>
+    public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<ProductViewModel>>
     {
         private readonly IProductRepository _productRepository;
 
@@ -12,11 +12,13 @@ namespace WonderfulStore.Application.Queries.GetAllProducts
         {
             _productRepository = productRepository;
         }
-        public async Task<List<Product>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+        public async Task<List<ProductViewModel>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
             var products = await _productRepository.GetAllAsync();
+
+            var productViewModels = products.Select(x => new ProductViewModel(x.Id, x.Name, x.Price, x.Description, x.IdPromotion)).ToList();
         
-            return products;
+            return productViewModels;
         }
     }
 }

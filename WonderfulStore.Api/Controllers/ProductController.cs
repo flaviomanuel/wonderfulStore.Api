@@ -35,8 +35,6 @@ namespace WonderfulStore.Api.Controllers
 
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(GetByIdProductQuery query){
-  
-
             var product = await _mediator.Send(query);
 
             return Ok(product);

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WonderfulStore.Api.Configurations;
 using WonderfulStore.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddHandlers();
+builder.Services.AddDependencyInjections();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

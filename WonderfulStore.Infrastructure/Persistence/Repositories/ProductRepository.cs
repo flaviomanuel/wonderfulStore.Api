@@ -13,24 +13,24 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<Product> Add(Product product)
+        public async Task<Product> AddAsync(Product product)
         {
            await _context.AddAsync(product);
 
            return product;
         }
 
-        public async Task Delete(Product product)
+        public async Task DeleteAsync(Product product)
         {
             _context.Remove(product);
 
            await _context.SaveChangesAsync();
         }
-        public async Task<List<Product>> GetAll() =>  await _context.Products.ToListAsync();
+        public async Task<List<Product>> GetAllAsync() =>  await _context.Products.ToListAsync();
 
-        public async Task<Product?> GetById(Guid id) => await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<Product?> GetByIdAsync(Guid id) => await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task Update(Product product)
+        public async Task UpdateAsync(Product product)
         {
             _context.Products.Update(product);
 

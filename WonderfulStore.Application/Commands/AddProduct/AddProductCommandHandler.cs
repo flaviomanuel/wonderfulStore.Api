@@ -17,7 +17,7 @@ namespace WonderfulStore.Application.Commands.AddProduct
         {
             var product = new Product(request.Name, request.Price, request.Description,request.IdPromotion);
 
-            await _productRepository.Add(product);
+            await _productRepository.AddAsync(product);
 
             return product;
         }

@@ -4,10 +4,10 @@ namespace WonderfulStore.Core.Interfaces
 {
     public interface IProductRepository
     {
-        Task<Product> Add(Product product);
-        Task Delete(Product product);
-        Task Update(Product product);
-        Task<Product?> GetById(Guid id);
-        Task<List<Product>> GetAll();
+        Task<Product> AddAsync(Product product);
+        Task DeleteAsync(Product product);
+        Task UpdateAsync(Product product);
+        Task<Product?> GetByIdAsync(Guid id);
+        Task<List<Product>> GetAllAsync();
     }
 }

@@ -7,6 +7,8 @@ namespace WonderfulStore.Api.Configurations
     {
          public static IServiceCollection AddDependencyInjections(this IServiceCollection services){
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IShoppingCartProductRepository, ShoppingCartProductRepository>();
+            services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
             return services;
          }

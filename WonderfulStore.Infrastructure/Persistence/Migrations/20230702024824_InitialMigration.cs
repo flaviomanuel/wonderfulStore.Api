@@ -31,7 +31,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdPromotion = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IdPromotion = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {

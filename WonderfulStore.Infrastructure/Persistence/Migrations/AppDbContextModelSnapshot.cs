@@ -32,7 +32,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("IdPromotion")
+                    b.Property<Guid?>("IdPromotion")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -69,8 +69,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.HasOne("WonderfulStore.Core.Entities.Promotion", "Promotion")
                         .WithMany("Products")
                         .HasForeignKey("IdPromotion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Promotion");
                 });

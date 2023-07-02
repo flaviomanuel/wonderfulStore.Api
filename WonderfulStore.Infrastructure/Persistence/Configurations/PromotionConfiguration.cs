@@ -14,6 +14,11 @@ namespace WonderfulStore.Infrastructure.Persistence.Configurations
             builder 
                 .HasMany(x => x.Products)
                 .WithOne(x => x.Promotion); 
+
+            builder.HasData(
+                new Promotion("2 por 1"),
+                new Promotion("3 por R$10")
+            );
               
         }
     }

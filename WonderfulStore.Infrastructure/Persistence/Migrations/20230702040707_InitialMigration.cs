@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace WonderfulStore.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -42,6 +44,15 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                         principalTable: "Promotions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Promotions",
+                columns: new[] { "Id", "Description" },
+                values: new object[,]
+                {
+                    { new Guid("837273cf-8e4e-4786-a978-3c9edbccc68d"), "3 por R$10" },
+                    { new Guid("a7e77dda-a15f-41d2-8eca-117d61a360ec"), "2 por 1" }
                 });
 
             migrationBuilder.CreateIndex(

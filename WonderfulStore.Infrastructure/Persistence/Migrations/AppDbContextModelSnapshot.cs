@@ -62,6 +62,18 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Promotions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a7e77dda-a15f-41d2-8eca-117d61a360ec"),
+                            Description = "2 por 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("837273cf-8e4e-4786-a978-3c9edbccc68d"),
+                            Description = "3 por R$10"
+                        });
                 });
 
             modelBuilder.Entity("WonderfulStore.Core.Entities.Product", b =>

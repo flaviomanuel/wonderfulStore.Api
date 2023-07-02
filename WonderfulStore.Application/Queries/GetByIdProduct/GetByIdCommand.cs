@@ -1,9 +1,9 @@
 using MediatR;
-using WonderfulStore.Core.Entities;
+using WonderfulStore.Application.ViewModels;
 
 namespace WonderfulStore.Application.Commands.GetByIdProduct
 {
-    public class GetByIdProductQuery: IRequest<Product>
+    public class GetByIdProductQuery: IRequest<ProductViewModel>
     {
         public Guid Id { get; set; }
     }

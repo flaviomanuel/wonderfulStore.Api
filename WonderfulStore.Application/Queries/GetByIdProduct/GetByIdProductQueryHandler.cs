@@ -1,10 +1,11 @@
 using MediatR;
+using WonderfulStore.Application.ViewModels;
 using WonderfulStore.Core.Entities;
 using WonderfulStore.Core.Interfaces;
 
 namespace WonderfulStore.Application.Commands.GetByIdProduct
 {
-    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, Product>
+    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, ProductViewModel>
     {
         private readonly IProductRepository _productRepository;
 
@@ -12,13 +13,15 @@ namespace WonderfulStore.Application.Commands.GetByIdProduct
         {
             _productRepository = productRepository;
         }
-        public async Task<Product> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
+        public async Task<ProductViewModel> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.Id);
 
             if (product is null) throw new Exception("Produto não encontrado");
 
-            return product;
+            var productViewModel = new ProductViewModel(product.Id, product.Name, product.Price, product.Description, product.IdPromotion);
+         
+            return productViewModel;
         }
     }
 }

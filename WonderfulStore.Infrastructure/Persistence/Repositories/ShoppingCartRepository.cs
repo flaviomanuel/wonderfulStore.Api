@@ -12,7 +12,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
-        public async Task<ShoppingCart> Add(ShoppingCart shoppingCart)
+        public async Task<ShoppingCart> AddAsync(ShoppingCart shoppingCart)
         {  
             await _context.ShoppingCarts.AddAsync(shoppingCart);
 
@@ -21,7 +21,7 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
            return shoppingCart;
         }
 
-        public async Task<ShoppingCart?> GetById(Guid id) => await _context.ShoppingCarts.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<ShoppingCart?> GetByIdAsync(Guid id) => await _context.ShoppingCarts.FirstOrDefaultAsync(x => x.Id == id);
         
     }
 }

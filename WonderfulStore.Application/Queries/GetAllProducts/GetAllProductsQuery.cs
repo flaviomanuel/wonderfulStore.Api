@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MediatR;
+using WonderfulStore.Core.Entities;
 
 namespace WonderfulStore.Application.Queries.GetAllProducts
 {
-    public class GetAllProductsQuery
+    public class GetAllProductsQuery : IRequest<List<Product>>
     {
         
     }

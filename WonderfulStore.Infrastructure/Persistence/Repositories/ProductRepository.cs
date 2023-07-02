@@ -15,7 +15,9 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
 
         public async Task<Product> AddAsync(Product product)
         {
-           await _context.AddAsync(product);
+            await _context.AddAsync(product);
+
+            await _context.SaveChangesAsync();
 
            return product;
         }

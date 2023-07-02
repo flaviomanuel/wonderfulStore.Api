@@ -39,8 +39,8 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -66,14 +66,52 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a7e77dda-a15f-41d2-8eca-117d61a360ec"),
+                            Id = new Guid("3c1f88b5-2bed-469d-91bc-9c06d4f092b4"),
                             Description = "2 por 1"
                         },
                         new
                         {
-                            Id = new Guid("837273cf-8e4e-4786-a978-3c9edbccc68d"),
+                            Id = new Guid("f4c5d299-0ffb-4858-89c9-9157809b5931"),
                             Description = "3 por R$10"
                         });
+                });
+
+            modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingCart");
+                });
+
+            modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCartProduct", b =>
+                {
+                    b.Property<Guid>("IdProduct")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdShoppingCart")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("IdProduct", "IdShoppingCart");
+
+                    b.HasIndex("IdShoppingCart");
+
+                    b.ToTable("ShoppingCartProduct", (string)null);
                 });
 
             modelBuilder.Entity("WonderfulStore.Core.Entities.Product", b =>
@@ -86,9 +124,38 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.Navigation("Promotion");
                 });
 
+            modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCartProduct", b =>
+                {
+                    b.HasOne("WonderfulStore.Core.Entities.Product", "Product")
+                        .WithMany("ShoppingCartProducts")
+                        .HasForeignKey("IdProduct")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WonderfulStore.Core.Entities.ShoppingCart", "ShoppingCart")
+                        .WithMany("ShoppingCartProducts")
+                        .HasForeignKey("IdShoppingCart")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ShoppingCart");
+                });
+
+            modelBuilder.Entity("WonderfulStore.Core.Entities.Product", b =>
+                {
+                    b.Navigation("ShoppingCartProducts");
+                });
+
             modelBuilder.Entity("WonderfulStore.Core.Entities.Promotion", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCart", b =>
+                {
+                    b.Navigation("ShoppingCartProducts");
                 });
 #pragma warning restore 612, 618
         }

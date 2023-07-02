@@ -8,8 +8,10 @@ namespace WonderfulStore.Core.Entities
             Name = name;
             Price = price;
             Description = description;
-            
+
             IdPromotion = idPromotion;
+            ShoppingCartProducts = new List<ShoppingCartProduct>();
+
         }
 
         public Guid Id {get; private set;}
@@ -18,5 +20,7 @@ namespace WonderfulStore.Core.Entities
         public string Description { get; private set; }
         public Guid? IdPromotion { get; private set; }
         public Promotion? Promotion { get; private set; }
+        public List<ShoppingCartProduct> ShoppingCartProducts { get; private set; }
+
     }
 }

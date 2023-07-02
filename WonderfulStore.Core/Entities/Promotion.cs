@@ -4,7 +4,7 @@ namespace WonderfulStore.Core.Entities
     {
         public Promotion(string description)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             Description = description;
             Products = new List<Product>();
         }

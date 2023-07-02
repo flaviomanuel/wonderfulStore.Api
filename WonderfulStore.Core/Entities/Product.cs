@@ -4,7 +4,7 @@ namespace WonderfulStore.Core.Entities
     {
         public Product(string name, float price, string description, Guid? idPromotion)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             Name = name;
             Price = price;
             Description = description;

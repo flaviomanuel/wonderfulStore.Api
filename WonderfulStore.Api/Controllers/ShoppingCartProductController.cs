@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WonderfulStore.Application.Commands.AddShoppingCartProduct;
+using WonderfulStore.Application.Queries.GetAllProductsFromShoppingCardById;
 
 namespace WonderfulStore.Api.Controllers
 {
@@ -20,6 +21,15 @@ namespace WonderfulStore.Api.Controllers
            var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(AddProductInShoppingCart), result);
+        }
+
+          
+        [HttpGet("GetAllProductsFromShoppingCartById")]
+        public async Task<IActionResult> GetAllProductsFromShoppingCart([FromQuery] GetAllProductsFromShoppingCartByIdQuery query){
+           
+           var result = await _mediator.Send(query);
+
+            return CreatedAtAction(nameof(GetAllProductsFromShoppingCart), result);
         }
     }
 }

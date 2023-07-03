@@ -16,10 +16,8 @@ namespace WonderfulStore.Application.Commands.AddShoppingCartProduct.Builder
             return this;
         }
 
-        public AddShoppingCartProductViewModelBuilder WithFundamentalInfos(int quantity, Guid idProduct, Guid idShoppingCart) {
+        public AddShoppingCartProductViewModelBuilder WithFundamentalInfos(int quantity) {
             _addShoppingCartProductViewModel.Quantity = quantity;
-            _addShoppingCartProductViewModel.IdProduct = idProduct;
-            _addShoppingCartProductViewModel.IdShoppingCart = idShoppingCart;
 
             return this;
         }

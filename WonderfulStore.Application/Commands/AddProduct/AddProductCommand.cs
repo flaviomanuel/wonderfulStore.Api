@@ -1,4 +1,5 @@
 using MediatR;
+using WonderfulStore.Core.Enums;
 
 namespace WonderfulStore.Application.Commands.AddProduct
 {
@@ -7,6 +8,6 @@ namespace WonderfulStore.Application.Commands.AddProduct
         public string Name { get;  set; }
         public decimal Price { get;  set; }
         public string Description { get;  set; }
-        public Guid? IdPromotion { get;  set; }
+        public PromotionType? PromotionType { get;  set; }
     }
 }

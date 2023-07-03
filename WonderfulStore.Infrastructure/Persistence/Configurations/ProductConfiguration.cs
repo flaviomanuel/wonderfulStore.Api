@@ -10,12 +10,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Configurations
         {
             builder
                 .HasKey(x => x.Id);
-               
-            builder
-             .HasOne(x => x.Promotion)
-             .WithMany(x => x.Products)
-             .HasForeignKey(x => x.IdPromotion)
-             .OnDelete(DeleteBehavior.Restrict); 
         }
     }
 }

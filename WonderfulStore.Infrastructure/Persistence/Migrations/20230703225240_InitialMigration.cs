@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace WonderfulStore.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -14,15 +12,18 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Promotions",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PromotionType = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Promotions", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -36,27 +37,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdPromotion = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_Promotions_IdPromotion",
-                        column: x => x.IdPromotion,
-                        principalTable: "Promotions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,20 +65,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Promotions",
-                columns: new[] { "Id", "Description" },
-                values: new object[,]
-                {
-                    { new Guid("348303ec-f3dd-4180-94e6-4ba7701926d8"), "2 por 1" },
-                    { new Guid("904a6594-c0de-4fe7-a952-8fdbedb3a8ac"), "3 por R$10" }
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_IdPromotion",
-                table: "Products",
-                column: "IdPromotion");
-
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartProducts_IdShoppingCart",
                 table: "ShoppingCartProducts",
@@ -116,9 +82,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ShoppingCarts");
-
-            migrationBuilder.DropTable(
-                name: "Promotions");
         }
     }
 }

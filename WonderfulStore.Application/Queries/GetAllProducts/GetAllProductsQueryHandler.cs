@@ -16,7 +16,7 @@ namespace WonderfulStore.Application.Queries.GetAllProducts
         {
             var products = await _productRepository.GetAllAsync();
 
-            var productViewModels = products.Select(x => new ProductViewModel(x.Id, x.Name, x.Price, x.Description, x.IdPromotion)).ToList();
+            var productViewModels = products.Select(x => new ProductViewModel(x.Id, x.Name, x.Price, x.Description, x.PromotionType)).ToList();
         
             return productViewModels;
         }

@@ -19,7 +19,7 @@ namespace WonderfulStore.Application.Commands.GetByIdProduct
 
             if (product is null) throw new Exception("Produto não encontrado");
 
-            var productViewModel = new ProductViewModel(product.Id, product.Name, product.Price, product.Description, product.IdPromotion);
+            var productViewModel = new ProductViewModel(product.Id, product.Name, product.Price, product.Description, product.PromotionType);
          
             return productViewModel;
         }

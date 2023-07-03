@@ -37,8 +37,8 @@ namespace WonderfulStore.Application.Commands.AddShoppingCartProduct
 
             var addShoppingCartProductViewModelBuilder = builder
                         .Start()
-                        .WithFundamentalInfos(request.Quantity, request.IdProduct, request.IdShoppingCart)
-                        .WithProductViewModel(new ProductViewModel(product.Id, product.Name, product.Price, product.Description, product.IdPromotion))
+                        .WithFundamentalInfos(request.Quantity)
+                        .WithProductViewModel(new ProductViewModel(product.Id, product.Name, product.Price, product.Description, product.PromotionType))
                         .WithShoppingCartViewModel(new ShoppingCartViewModel(shoppingCart.Id, shoppingCart.Status))
                         .Build();
         

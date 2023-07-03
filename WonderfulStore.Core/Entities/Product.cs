@@ -1,15 +1,17 @@
+using WonderfulStore.Core.Enums;
+
 namespace WonderfulStore.Core.Entities
 {
     public class Product : IBaseEntity
     {
-        public Product(string name, decimal price, string description, Guid? idPromotion)
+        public Product(string name, decimal price, string description, PromotionType? promotionType)
         {
             Id = Guid.NewGuid();
             Name = name;
             Price = price;
             Description = description;
 
-            IdPromotion = idPromotion;
+            PromotionType = promotionType;
             ShoppingCartProducts = new List<ShoppingCartProduct>();
 
         }
@@ -18,8 +20,7 @@ namespace WonderfulStore.Core.Entities
         public string Name { get; private set; }
         public decimal Price { get; private set; }
         public string Description { get; private set; }
-        public Guid? IdPromotion { get; private set; }
-        public Promotion? Promotion { get; private set; }
+        public PromotionType? PromotionType { get; private set; }
         public List<ShoppingCartProduct> ShoppingCartProducts { get; private set; }
 
     }

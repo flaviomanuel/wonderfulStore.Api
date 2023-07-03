@@ -32,7 +32,7 @@ namespace WonderfulStore.Application.Queries.GetAllProductsFromShoppingCardById
                                                 x.Product.Name,
                                                 x.Product.Price,
                                                 x.Product.Description,
-                                                x.Product.IdPromotion
+                                                x.Product.PromotionType
                                             ))
                                     .Build()
                                     )

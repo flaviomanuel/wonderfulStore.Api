@@ -12,7 +12,7 @@ using WonderfulStore.Infrastructure;
 namespace WonderfulStore.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230702194628_InitialMigration")]
+    [Migration("20230703225240_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -35,9 +35,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("IdPromotion")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -45,38 +42,12 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("PromotionType")
+                        .HasColumnType("int");
 
-                    b.HasIndex("IdPromotion");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("WonderfulStore.Core.Entities.Promotion", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Promotions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("348303ec-f3dd-4180-94e6-4ba7701926d8"),
-                            Description = "2 por 1"
-                        },
-                        new
-                        {
-                            Id = new Guid("904a6594-c0de-4fe7-a952-8fdbedb3a8ac"),
-                            Description = "3 por R$10"
-                        });
                 });
 
             modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCart", b =>
@@ -117,16 +88,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
                     b.ToTable("ShoppingCartProducts", (string)null);
                 });
 
-            modelBuilder.Entity("WonderfulStore.Core.Entities.Product", b =>
-                {
-                    b.HasOne("WonderfulStore.Core.Entities.Promotion", "Promotion")
-                        .WithMany("Products")
-                        .HasForeignKey("IdPromotion")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Promotion");
-                });
-
             modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCartProduct", b =>
                 {
                     b.HasOne("WonderfulStore.Core.Entities.Product", "Product")
@@ -149,11 +110,6 @@ namespace WonderfulStore.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("WonderfulStore.Core.Entities.Product", b =>
                 {
                     b.Navigation("ShoppingCartProducts");
-                });
-
-            modelBuilder.Entity("WonderfulStore.Core.Entities.Promotion", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("WonderfulStore.Core.Entities.ShoppingCart", b =>

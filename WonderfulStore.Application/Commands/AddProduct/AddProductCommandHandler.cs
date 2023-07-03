@@ -15,7 +15,7 @@ namespace WonderfulStore.Application.Commands.AddProduct
 
         public async Task<Guid> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
-            var product = new Product(request.Name, request.Price, request.Description, request.IdPromotion);
+            var product = new Product(request.Name, request.Price, request.Description, request.PromotionType);
 
             await _productRepository.AddAsync(product);
 

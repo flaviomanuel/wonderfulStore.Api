@@ -11,7 +11,6 @@ namespace WonderfulStore.Infrastructure
           
         }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Promotion> Promotions { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ShoppingCartProduct> ShoppingCartProducts { get; set; }
 

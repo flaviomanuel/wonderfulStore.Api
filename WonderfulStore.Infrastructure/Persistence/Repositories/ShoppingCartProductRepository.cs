@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WonderfulStore.Core.Entities;
 using WonderfulStore.Core.Interfaces;
 
@@ -20,5 +21,15 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
             return shoppingCartProduct;
         }
 
+        public async Task<List<ShoppingCartProduct>> GetAllProductsFromShoppingCartById(Guid id)
+        {
+            var allProductsFromShoppingCard = await _context.ShoppingCartProducts
+                    .Include(x => x.Product)
+                    .Include(x => x.ShoppingCart)
+                    .Where(x => x.IdShoppingCart == id)
+                    .ToListAsync();
+
+            return allProductsFromShoppingCard;
+        }
     }
 }

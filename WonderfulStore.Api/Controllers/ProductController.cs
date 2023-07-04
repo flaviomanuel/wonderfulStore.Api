@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WonderfulStore.Application.Commands.AddProduct;
 using WonderfulStore.Application.Commands.DeleteProduct;
 using WonderfulStore.Application.Commands.GetByIdProduct;
+using WonderfulStore.Application.Commands.UpdateProduct;
 using WonderfulStore.Application.Queries.GetAllProducts;
 
 namespace WonderfulStore.Api.Controllers
@@ -49,5 +50,15 @@ namespace WonderfulStore.Api.Controllers
 
             return Ok(new {id = deleteProductCommand.Id});
         }
+
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update([FromBody]UpdateProductCommand command){
+        
+            await _mediator.Send(command);
+
+            return Ok(command);
+        }
+
+
     }
 }

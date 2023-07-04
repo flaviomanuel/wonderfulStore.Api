@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WonderfulStore.Application.Commands.AddShoppingCartProduct;
+using WonderfulStore.Application.Commands.DeleteProductInShoppingCart;
 using WonderfulStore.Application.Queries.GetAllProductsFromShoppingCardById;
 
 namespace WonderfulStore.Api.Controllers
@@ -31,5 +32,14 @@ namespace WonderfulStore.Api.Controllers
 
             return CreatedAtAction(nameof(GetAllProductsFromShoppingCart), result);
         }
+
+          [HttpDelete("DeleteProductInShoppingCart")]
+        public async Task<IActionResult> DeleteProductInShoppingCart([FromQuery]DeleteProductInShoppingCartCommand command){
+           
+            await _mediator.Send(command);
+
+            return Ok();
+        }
+
     }
 }

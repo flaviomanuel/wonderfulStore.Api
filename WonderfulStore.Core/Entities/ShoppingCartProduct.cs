@@ -1,3 +1,5 @@
+using WonderfulStore.Core.Interfaces;
+
 namespace WonderfulStore.Core.Entities
 {
     public class ShoppingCartProduct
@@ -6,6 +8,14 @@ namespace WonderfulStore.Core.Entities
         {
             Quantity = quantity;
             TotalPrice = totalPrice;
+            IdProduct = idProduct;
+            IdShoppingCart = idShoppingCart;
+        }
+
+        public ShoppingCartProduct(int quantity, decimal productPrice, IPromotionService promotionService, Guid idProduct, Guid idShoppingCart)
+        {
+            Quantity = quantity;
+            TotalPrice = promotionService.CalculateTotalForPromotion(quantity, productPrice);
 
             IdProduct = idProduct;
             IdShoppingCart = idShoppingCart;

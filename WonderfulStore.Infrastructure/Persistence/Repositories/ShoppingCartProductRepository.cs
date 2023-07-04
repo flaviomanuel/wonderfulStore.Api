@@ -31,5 +31,12 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
 
             return allProductsFromShoppingCard;
         }
+
+        public async Task DeleteProductFromShoppingCartAsync(ShoppingCartProduct shoppingCartProduct){
+            _context.ShoppingCartProducts.Remove(shoppingCartProduct);
+
+           await _context.SaveChangesAsync();
+        }
+
     }
 }

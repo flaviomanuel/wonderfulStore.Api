@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WonderfulStore.Application.Commands.AddProduct;
+using WonderfulStore.Application.Commands.DeleteProduct;
 using WonderfulStore.Application.Commands.GetByIdProduct;
 using WonderfulStore.Application.Queries.GetAllProducts;
 
@@ -38,6 +39,13 @@ namespace WonderfulStore.Api.Controllers
             var product = await _mediator.Send(query);
 
             return Ok(product);
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete([FromQuery] DeleteProductCommand query){
+            await _mediator.Send(query);
+
+            return Ok(new {id = query.Id});
         }
     }
 }

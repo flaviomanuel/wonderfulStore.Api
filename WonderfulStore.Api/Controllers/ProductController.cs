@@ -41,11 +41,13 @@ namespace WonderfulStore.Api.Controllers
             return Ok(product);
         }
 
-        [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete([FromQuery] DeleteProductCommand query){
-            await _mediator.Send(query);
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id){
+            var deleteProductCommand = new DeleteProductCommand(id);
 
-            return Ok(new {id = query.Id});
+            await _mediator.Send(deleteProductCommand);
+
+            return Ok(new {id = deleteProductCommand.Id});
         }
     }
 }

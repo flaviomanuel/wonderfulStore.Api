@@ -12,8 +12,6 @@ namespace WonderfulStore.Application.Commands.AddShoppingCartProduct
         private readonly IShoppingCartRepository _shoppingCartRepository;
         private readonly IProductRepository _productRepository;
         private readonly IPromotionServiceFactory _promotionServiceFactory;
-
-        private IPromotionService _promotionService;
         public AddShoppingCartProductCommandHandler(
                         IShoppingCartProductRepository shoppingCartProductRepository, 
                         IShoppingCartRepository shoppingCartRepository, 

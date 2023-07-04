@@ -38,5 +38,9 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
            await _context.SaveChangesAsync();
         }
 
+        public async Task<ShoppingCartProduct?> GetOneProductInShoppingCartAsync(Guid idProduct, Guid idShoppingCart) => 
+                await  _context.ShoppingCartProducts
+                        .FirstOrDefaultAsync(x => x.IdProduct == idProduct && x.IdShoppingCart == idShoppingCart);
+        
     }
 }

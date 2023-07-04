@@ -23,5 +23,14 @@ namespace WonderfulStore.Core.Entities
         public PromotionType? PromotionType { get; private set; }
         public List<ShoppingCartProduct> ShoppingCartProducts { get; private set; }
 
+
+        public void Update(string name, decimal price,string description, PromotionType? promotionType)
+        {
+            Name = name;
+            Price = price;
+            Description = description;
+            PromotionType = promotionType;  
+        }
+
     }
 }

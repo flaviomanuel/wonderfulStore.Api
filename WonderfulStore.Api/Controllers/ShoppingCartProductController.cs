@@ -2,7 +2,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WonderfulStore.Application.Commands.AddShoppingCartProduct;
 using WonderfulStore.Application.Commands.DeleteProductInShoppingCart;
+using WonderfulStore.Application.Commands.UpdateProductQuantityInShoppingCart;
 using WonderfulStore.Application.Queries.GetAllProductsFromShoppingCardById;
+using WonderfulStore.Application.ViewModels;
 
 namespace WonderfulStore.Api.Controllers
 {
@@ -39,6 +41,16 @@ namespace WonderfulStore.Api.Controllers
             await _mediator.Send(command);
 
             return Ok();
+        }
+
+
+        [HttpPut("UpdateQuantityOfProduct")]
+        public async Task<IActionResult> UpdateQuantityOfProduct([FromQuery]Guid idProduct, Guid idShoppingCart,  [FromBody] UpdateQuantityOfProductViewModel updateQuantityOfProduct){
+        var command = new UpdateProductQuantityInShoppingCartCommand(idProduct,idShoppingCart, updateQuantityOfProduct.Quantity);
+          
+          var result =  await _mediator.Send(command);
+
+            return Ok(result);
         }
 
     }

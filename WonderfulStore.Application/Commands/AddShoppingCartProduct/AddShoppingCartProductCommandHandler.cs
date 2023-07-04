@@ -11,11 +11,20 @@ namespace WonderfulStore.Application.Commands.AddShoppingCartProduct
         private readonly IShoppingCartProductRepository _shoppingCartProductRepository;
         private readonly IShoppingCartRepository _shoppingCartRepository;
         private readonly IProductRepository _productRepository;
-        public AddShoppingCartProductCommandHandler(IShoppingCartProductRepository shoppingCartProductRepository, IShoppingCartRepository shoppingCartRepository, IProductRepository productRepository)
+        private readonly IPromotionServiceFactory _promotionServiceFactory;
+
+        private IPromotionService _promotionService;
+        public AddShoppingCartProductCommandHandler(
+                        IShoppingCartProductRepository shoppingCartProductRepository, 
+                        IShoppingCartRepository shoppingCartRepository, 
+                        IProductRepository productRepository, 
+                        IPromotionServiceFactory promotionServiceFactory
+            )
         {
             _shoppingCartProductRepository = shoppingCartProductRepository;
             _shoppingCartRepository = shoppingCartRepository;
             _productRepository = productRepository;
+            _promotionServiceFactory = promotionServiceFactory;
         }
         public async Task<AddShoppingCartProductViewModel> Handle(AddShoppingCartProductCommand request, CancellationToken cancellationToken)
         {
@@ -27,9 +36,9 @@ namespace WonderfulStore.Application.Commands.AddShoppingCartProduct
 
             if(product is null) throw new Exception("Produto nao encontrado.");
 
-            var totalPrice = request.Quantity * product.Price;
-
-            var shoppingCartProduct = new ShoppingCartProduct(request.Quantity, totalPrice, product.Id, shoppingCart.Id);
+            var promotionService = _promotionServiceFactory.GetService(product.PromotionType);
+    
+            var shoppingCartProduct = new ShoppingCartProduct(request.Quantity, product.Price, promotionService , product.Id, shoppingCart.Id);
 
             await _shoppingCartProductRepository.AddProductInShoppingCartAsync(shoppingCartProduct);
 

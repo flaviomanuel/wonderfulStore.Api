@@ -15,7 +15,8 @@ namespace WonderfulStore.Core.Entities
         public ShoppingCartProduct(int quantity, decimal productPrice, IPromotionService promotionService, Guid idProduct, Guid idShoppingCart)
         {
             Quantity = quantity;
-            TotalPrice = promotionService.CalculateTotalForPromotion(quantity, productPrice);
+            
+            this.CalculateTotalPriceAccordingToPromotion(productPrice, promotionService);
 
             IdProduct = idProduct;
             IdShoppingCart = idShoppingCart;
@@ -31,6 +32,15 @@ namespace WonderfulStore.Core.Entities
         public Guid IdShoppingCart { get; private set; }
         public ShoppingCart ShoppingCart { get; private set; }
 
-  
+        public void UpdateQuantity(int quantity){
+            Quantity = quantity;
+        }
+
+        public void SetTotalPriceAccordingToPromotion(decimal productPrice, IPromotionService promotionService){
+            TotalPrice = this.CalculateTotalPriceAccordingToPromotion(productPrice, promotionService);
+        }
+        private decimal CalculateTotalPriceAccordingToPromotion(decimal productPrice, IPromotionService promotionService) {
+            return promotionService.CalculateTotalForPromotion(Quantity, productPrice);
+        }
     }
 }

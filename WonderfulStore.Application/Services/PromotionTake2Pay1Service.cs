@@ -6,21 +6,19 @@ namespace WonderfulStore.Application.Services
     {
         public decimal CalculateTotalForPromotion(int quantity, decimal price)
         {
-            var totalPriceWithoutDiscount = quantity * price;
-
-            var isDobro = (quantity % 2) == 0;
-			
-		    decimal discount = 0;
-		 
-            if(isDobro){
-                discount = totalPriceWithoutDiscount * (50m/100);
-            }else {
-                discount = totalPriceWithoutDiscount * (33.3m/100);
+            var divisao = quantity/2m;
+            var resto = quantity%2m;
+            
+            decimal finalResult = 0m;
+            
+            if(divisao > 0){
+                finalResult = Math.Floor(divisao) * price;
+            }
+            if(resto > 0) {
+                finalResult += price;
             }
 
-            decimal totalPriceWithDiscount = totalPriceWithoutDiscount - discount; 
-            
-            return totalPriceWithDiscount;
+            return  finalResult;
         }
     }
 }

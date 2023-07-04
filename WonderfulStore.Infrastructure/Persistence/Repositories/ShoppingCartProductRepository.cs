@@ -42,5 +42,11 @@ namespace WonderfulStore.Infrastructure.Persistence.Repositories
                 await  _context.ShoppingCartProducts
                         .FirstOrDefaultAsync(x => x.IdProduct == idProduct && x.IdShoppingCart == idShoppingCart);
         
+        public async Task UpdateAsync(ShoppingCartProduct shoppingCartProduct)
+        {
+            _context.ShoppingCartProducts.Update(shoppingCartProduct);
+        
+            await _context.SaveChangesAsync();
+        }
     }
 }

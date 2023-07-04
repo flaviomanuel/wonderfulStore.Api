@@ -8,5 +8,6 @@ namespace WonderfulStore.Core.Interfaces
         Task<List<ShoppingCartProduct>> GetAllProductsFromShoppingCartById(Guid id);
         Task DeleteProductFromShoppingCartAsync(ShoppingCartProduct shoppingCartProduct);
         Task<ShoppingCartProduct?> GetOneProductInShoppingCartAsync(Guid idProduct, Guid idShoppingCart);
+        Task UpdateAsync(ShoppingCartProduct shoppingCartProduct);
     }
 }

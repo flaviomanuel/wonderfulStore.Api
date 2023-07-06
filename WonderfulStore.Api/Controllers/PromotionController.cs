@@ -12,7 +12,7 @@ namespace WonderfulStore.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpPost("ListAllPromotionTypes")]
+        [HttpGet("ListAllPromotionTypes")]
         public  async Task<IActionResult> ListAllPromotionTypes( ){
             var query = new ListAllPromotionTypesQuery();
 

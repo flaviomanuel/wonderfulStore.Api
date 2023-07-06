@@ -16,7 +16,7 @@ namespace WonderfulStore.Core.Entities
         {
             Quantity = quantity;
             
-            this.CalculateTotalPriceAccordingToPromotion(productPrice, promotionService);
+            this.SetTotalPriceAccordingToPromotion(productPrice, promotionService);
 
             IdProduct = idProduct;
             IdShoppingCart = idShoppingCart;

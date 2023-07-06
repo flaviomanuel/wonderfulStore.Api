@@ -6,7 +6,9 @@ namespace WonderfulStore.Application.Services
     {
         public decimal CalculateTotalForPromotion(int quantity, decimal price)
         {
-           decimal totalPrice = quantity * price;
+            decimal trueQuantity = (quantity == 0) ? 1 : quantity;
+            
+           decimal totalPrice = trueQuantity * price;
            
            return totalPrice;
         }

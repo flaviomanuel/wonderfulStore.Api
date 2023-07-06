@@ -6,8 +6,10 @@ namespace WonderfulStore.Application.Services
     {
         public decimal CalculateTotalForPromotion(int quantity, decimal price)
         {
-            var divisao = quantity/2m;
-            var resto = quantity%2m;
+            decimal trueQuantity = (quantity == 0) ? 1 : quantity;
+
+            var divisao = trueQuantity/2m;
+            var resto = trueQuantity%2m;
             
             decimal finalResult = 0m;
             

@@ -58,3 +58,8 @@
     - Design patterns
 
 
+### Observação
+
+    - Todo historico de desenvolvimento está disponivel nos commits do repositorio
+    - Para visualizar o frontend dessa aplicação: https://github.com/flaviomanuel/wonderfulStore.Web
+ 

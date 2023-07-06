@@ -1,6 +1,6 @@
 # Wonderful Store
 
-- Decisões tecnicas e arquiteturais
+### Decisões tecnicas e arquiteturais
 
     - Decidi utilizar o padrão de Arquitetura Limpa durante o desenvolvimento, pois é uma padrão bastante completo. Ajuda na legibilidade de todo o codigo
     - Utilizou-se os principais principios do DDD. Entitidades ricas e que regram todo a regra de negocio do sistema.
@@ -13,7 +13,7 @@
     - Utilizei o Enum PromotionType para armazenar a promoção do produto.
     
 
-- Justificativa dos framworks
+### Justificativa dos framworks e bibliotecas
 
     - ASP.NET: Trata-se de uma ferrameta essencial para o desenvolvimento de sistema escalonavéis. Sua performace e padrões facilitam o processo de criação de um bom sistema.
     - Utilizei o Entity Framework para orquestração do banco de dados SQL server, pois possui facilidade durante seu uso no desenvolvimento e possui grande perfomace
@@ -21,9 +21,34 @@
     
 
 
-- instrução de como compilar e executar o projeto
+### instrução de como compilar e executar o projeto
 
--  Praticas durante o desenvolvimento
+    - Dentro de appsetiings, coloque sua connectionString do SQL Server dentro do campo WonderfulStoreDatabase. Exemplo: "Server=localhost; Database=wonderfulStoreDb; Integrated Security=True; trustServerCertificate=true"
+ 
+    ```bash 
+    
+    $ git clone https://github.com/flaviomanuel/wonderfulStore.Api
+    
+    $ cd wonderfulStore.Api
+    
+    $ dotnet restore
+
+     $  cd ./WonderfulStore.Infrastructure
+
+     # Para criar as tabelas dentro do banco de dados
+     $ dotnet ef database update -s ../WonderfulStore.Api/WonderfulStore.Api.csproj
+
+     $ cd ..
+
+     $ cd ./WonderfulStore.Api
+
+     $ dotnet run
+
+    ```
+
+    Acesse o link: http://localhost:5138/swagger/index.html
+
+###  Praticas durante o desenvolvimento
 
     - Clean code
     - CQRS

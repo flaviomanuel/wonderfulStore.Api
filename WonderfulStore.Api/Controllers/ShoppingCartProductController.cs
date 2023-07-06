@@ -32,7 +32,7 @@ namespace WonderfulStore.Api.Controllers
            
            var result = await _mediator.Send(query);
 
-            return CreatedAtAction(nameof(GetAllProductsFromShoppingCart), result);
+            return Ok(result);
         }
 
           [HttpDelete("DeleteProductInShoppingCart")]
